@@ -2,7 +2,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import SearchBar from './SearchBar';
+import SearchBar from './TopBar/SearchBar/index';
 
 type Props = {
   title?: string,

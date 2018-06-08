@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import TopBar from './TopBar';
+import FixedBar from './FixedBar';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <TopBar title='Welcome to Pokepdeia'/>
+        <FixedBar title="Welcome to Pokepdeia" />
       </div>
     );
   }
