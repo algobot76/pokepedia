@@ -62,6 +62,7 @@ class SearchBar extends React.Component<Props, State> {
 
   render() {
     const { classes } = this.props;
+
     return (
       <Paper className={classes.root}>
         <div className={classes.searchContainer}>

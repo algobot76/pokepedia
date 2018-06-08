@@ -29,6 +29,7 @@ const styles = {
 
 const PokemonCard = (props: Props) => {
   const { classes } = props;
+
   return (
     <div>
       <Card className={classes.card}>

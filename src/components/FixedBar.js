@@ -17,6 +17,7 @@ const styles = {
 
 const FixedBar = (props: Props) => {
   const { classes } = props;
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary">

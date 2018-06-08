@@ -41,6 +41,7 @@ class Display extends React.Component<Props> {
         </Grid>
       );
     });
+
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
