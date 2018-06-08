@@ -31,26 +31,17 @@ const PokemonCard = (props: Props) => {
   const { classes } = props;
   return (
     <div>
-      <Card>
-        <CardMedia
-          className={classes.media}
-          src={props.src}
-          title={props.name}
-        />
+      <Card className={classes.card}>
+        <CardMedia className={classes.media} image={props.src} />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            Pikachu
-          </Typography>
-          <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            Name: {props.name}
+            <br />
+            ID: {props.id}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
+        <CardActions>g
+          <Button size="small" color="secondary">
             Learn More
           </Button>
         </CardActions>
