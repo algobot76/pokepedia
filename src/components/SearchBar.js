@@ -82,7 +82,7 @@ class SearchBar extends React.Component<Props, State> {
             })
           }}
         >
-          <SearchIcon classes={classes.icon} />
+          <SearchIcon className={classes.icon}/>
         </IconButton>
       </Paper>
     );
