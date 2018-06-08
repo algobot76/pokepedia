@@ -17,7 +17,8 @@ type State = {
 const styles = {
   root: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginLeft: 'auto'
   },
   searchContainer: {
     margin: 'auto 16px',
@@ -36,7 +37,7 @@ const styles = {
     transition: 'transform 200ms cubic-bezier(0.4, 0.0, 0.2, 1)'
   },
   searchIconButton: {
-    marginRight: -48
+    marginRight: 'auto'
   },
   iconButtonHidden: {
     transform: 'scale(0, 0)',
