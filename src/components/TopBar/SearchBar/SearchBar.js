@@ -76,7 +76,7 @@ class SearchBar extends React.Component<Props, State> {
         <IconButton
           classes={{
             root: classNames(classes.iconButton, classes.searchIconButton, {
-              [classes.iconButtonHidden]: this.state.value !== ''
+              [classes.iconButtonHidden]: this.state.value === ''
             })
           }}
         >
