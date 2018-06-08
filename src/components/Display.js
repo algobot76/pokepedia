@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import PokemonCard from './PokemonCard';
 
@@ -28,24 +28,18 @@ class Display extends React.Component<Props> {
 
   render() {
     const { classes } = this.props;
-    const pokemonCards = this.props.pokemons.forEach(pokemon => {
-      return (
-        <Grid item xs>
-          <Paper className={classes.paper}>
-            <PokemonCard
-              id={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.src}
-            />
-          </Paper>
-        </Grid>
-      );
-    });
-
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          {pokemonCards}
+          {this.props.pokemons.map(pokemon => (
+            <Grid item xs>
+              <PokemonCard
+                id={pokemon.id}
+                name={pokemon.name}
+                image={pokemon.src}
+              />
+            </Grid>
+          ))}
         </Grid>
       </div>
     );
