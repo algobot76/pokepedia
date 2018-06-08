@@ -2,6 +2,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import SearchBar from './SearchBar';
 
 type Props = {
   title?: string,
@@ -23,6 +24,7 @@ const FixedBar = (props: Props) => {
           <Typography variant="title" color="inherit">
             {props.title}
           </Typography>
+          <SearchBar placeholder="Search pokemon..." />
         </Toolbar>
       </AppBar>
     </div>
