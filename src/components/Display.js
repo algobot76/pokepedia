@@ -11,7 +11,8 @@ type Props = {
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: '30px'
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -20,6 +21,34 @@ const styles = theme => ({
   }
 });
 
-const Display = (props: Props) => {};
+class Display extends React.Component<Props> {
+  static defaultProps = {
+    pokemons: []
+  };
+
+  render() {
+    const { classes } = this.props;
+    const pokemonCards = this.props.pokemons.forEach(pokemon => {
+      return (
+        <Grid item xs>
+          <Paper className={classes.paper}>
+            <PokemonCard
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.src}
+            />
+          </Paper>
+        </Grid>
+      );
+    });
+    return (
+      <div className={classes.root}>
+        <Grid container spacing={24}>
+          {pokemonCards}
+        </Grid>
+      </div>
+    );
+  }
+}
 
 export default withStyles(styles)(Display);
