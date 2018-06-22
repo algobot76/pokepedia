@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FixedBar from './FixedBar';
-import Display from './Display';
+import FixedBar from '../components/FixedBar';
+import Display from '../components/Display';
 
 class App extends Component {
   render() {
