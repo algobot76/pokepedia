@@ -35,8 +35,8 @@ class Display extends Component<Props> {
       <div className={classes.root}>
         <Grid container spacing={24}>
           {pokemon.map(p => (
-            <Grid item xs={3} key = {p.id}>
-              <LazyLoad offset={100} once>
+            <Grid item xs={3} key={p.id}>
+              <LazyLoad height={100} offset={100} once>
                 <PokemonCard id={p.id} name={p.name} src={p.src} />
               </LazyLoad>
             </Grid>
