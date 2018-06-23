@@ -1,11 +1,13 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import compose from 'recompose/compose';
 import PokemonCard from './PokemonCard';
 
 type Props = {
-  pokemons: [Object],
+  pokemon: [Object],
   classes: Object
 };
 
@@ -21,9 +23,9 @@ const styles = theme => ({
   }
 });
 
-class Display extends React.Component<Props> {
+class Display extends Component<Props> {
   static defaultProps = {
-    pokemons: []
+    pokemon: []
   };
 
   render() {
@@ -31,7 +33,7 @@ class Display extends React.Component<Props> {
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          {this.props.pokemons.map(pokemon => (
+          {this.props.pokemon.map(pokemon => (
             <Grid item xs>
               <PokemonCard
                 id={pokemon.id}
@@ -46,4 +48,9 @@ class Display extends React.Component<Props> {
   }
 }
 
-export default withStyles(styles)(Display);
+const mapStateToProps = state => {
+  const { pokemon } = state;
+  return pokemon;
+};
+
+export default compose(withStyles(styles), connect(mapStateToProps))(Display);
