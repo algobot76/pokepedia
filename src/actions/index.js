@@ -4,7 +4,7 @@ import {
   REQUEST_COUNT,
   REQUEST_POKEMON
 } from '../constants';
-import { capitalizeFirstLetter, getId } from '../utils';
+import { capitalizeFirstLetter, getId, getPokemonImageUrl } from '../utils';
 import axios from 'axios';
 
 const pokeapi = axios.create({
@@ -28,7 +28,8 @@ export const receivePokemon = res => ({
   type: RECEIVE_POKEMON,
   pokemon: res.data.results.map(pokemon => ({
     id: getId(pokemon.url),
-    name: capitalizeFirstLetter(pokemon.name)
+    name: capitalizeFirstLetter(pokemon.name),
+    src: getPokemonImageUrl(getId(pokemon.url))
   }))
 });
 
