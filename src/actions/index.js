@@ -54,7 +54,17 @@ export const updateSearchTerm = event => ({
   term: event.target.value
 });
 
-export const searchPokemon = (name, pokemon) => ({
+const searchPokemonHelper = (name, pokemon) => ({
   type: SEARCH_POKEMON,
-  possiblePokemon: pokemon.filter(p => p.name.includes(name))
+  possiblePokemon: pokemon.filter(p => {
+    return p.name.toLowerCase().includes(name.toLocaleString());
+  })
 });
+
+export const searchPokemon = () => (dispatch, getState) => {
+  const state = getState();
+  const { searchTerm, pokemon } = state;
+  return dispatch(
+    searchPokemonHelper(searchTerm.pokemonToSearch, pokemon.pokemon)
+  );
+};

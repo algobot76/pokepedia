@@ -75,12 +75,10 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   onClick: event => {
     event.preventDefault();
-    const { term, pokemon } = ownProps;
-    console.log('ownProps:' + term);
-    dispatch(searchPokemon(term, pokemon));
+    dispatch(searchPokemon());
   },
   onChange: event => {
     dispatch(updateSearchTerm(event));
