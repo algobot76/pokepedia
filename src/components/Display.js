@@ -29,16 +29,16 @@ class Display extends Component<Props> {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, pokemon } = this.props;
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          {this.props.pokemon.map(pokemon => (
+          {pokemon.map(p => (
             <Grid item xs={3}>
               <PokemonCard
-                id={pokemon.id}
-                name={pokemon.name}
-                image={pokemon.src}
+                id={p.id}
+                name={p.name}
+                src={p.src}
               />
             </Grid>
           ))}
