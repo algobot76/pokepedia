@@ -10,11 +10,5 @@ export const capitalizeFirstLetter = (name: string): string => {
 };
 
 export const getPokemonImageUrl = (id: string): string => {
-  // let newId: string = id;
-  // while (id.length < 3) {
-  //   newId = `0${newId}`;
-  // }
-  //
-  // return `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${newId}.png`;
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 };

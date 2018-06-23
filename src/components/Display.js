@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import LazyLoad from 'react-lazyload';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import compose from 'recompose/compose';
@@ -35,11 +36,9 @@ class Display extends Component<Props> {
         <Grid container spacing={24}>
           {pokemon.map(p => (
             <Grid item xs={3}>
-              <PokemonCard
-                id={p.id}
-                name={p.name}
-                src={p.src}
-              />
+              <LazyLoad offset={100} once>
+                <PokemonCard id={p.id} name={p.name} src={p.src} />
+              </LazyLoad>
             </Grid>
           ))}
         </Grid>
