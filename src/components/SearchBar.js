@@ -40,14 +40,14 @@ const styles = {
   }
 };
 
-const SearchBar = ({ classes, placeholder, searchTerm, onChange }) => {
+const SearchBar = ({ classes, placeholder, term, onChange, onClick }) => {
   return (
     <Paper className={classes.root}>
       <div className={classes.searchContainer}>
         <Input
           className={classes.input}
           placeholder={placeholder}
-          value={searchTerm}
+          value={term}
           onChange={onChange}
           fullWidth
           disableUnderline
@@ -56,9 +56,10 @@ const SearchBar = ({ classes, placeholder, searchTerm, onChange }) => {
       <IconButton
         classes={{
           root: classNames(classes.iconButton, classes.searchIconButton, {
-            [classes.iconButtonHidden]: searchTerm === ''
+            [classes.iconButtonHidden]: term === ''
           })
         }}
+        onClick={onClick}
       >
         <SearchIcon className={classes.icon} />
       </IconButton>
@@ -66,15 +67,27 @@ const SearchBar = ({ classes, placeholder, searchTerm, onChange }) => {
   );
 };
 
+const mapStateToProps = state => {
+  const { searchTerm, pokemon } = state;
+  return {
+    term: searchTerm.pokemonToSearch,
+    pokemon: pokemon.pokemon
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () =>
-    dispatch(searchPokemon(ownProps.pokemonToSearch, ownProps.pokemon)),
+  onClick: event => {
+    event.preventDefault();
+    const { term, pokemon } = ownProps;
+    console.log('ownProps:' + term);
+    dispatch(searchPokemon(term, pokemon));
+  },
   onChange: event => {
-    console.log(event);
     dispatch(updateSearchTerm(event));
   }
 });
 
-export default compose(withStyles(styles), connect(null, mapDispatchToProps))(
-  SearchBar
-);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, mapDispatchToProps)
+)(SearchBar);
