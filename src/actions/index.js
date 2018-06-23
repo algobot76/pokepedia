@@ -1,16 +1,9 @@
-// @flow
 import {
   RECEIVE_COUNT,
   RECEIVE_POKEMON,
   REQUEST_COUNT,
   REQUEST_POKEMON
 } from '../constants';
-import type {
-  ReceiveCountAction,
-  ReceivePokemonAction,
-  RequestCountAction,
-  RequestPokemonAction
-} from '../types';
 
 import axios from 'axios';
 
@@ -18,20 +11,20 @@ const pokeapi = axios.create({
   baseURL: 'https://pokeapi.co/api/v2/'
 });
 
-export const requestCount = (): RequestCountAction => ({
+export const requestCount = () => ({
   type: REQUEST_COUNT
 });
 
-export const receiveCount = (json: Object): ReceiveCountAction => ({
+export const receiveCount = json => ({
   type: RECEIVE_COUNT,
   count: json.count
 });
 
-export const requestPokemon = (): RequestPokemonAction => ({
+export const requestPokemon = () => ({
   type: REQUEST_POKEMON
 });
 
-export const receivePokemon = (json: Object): ReceivePokemonAction => ({
+export const receivePokemon = json => ({
   type: RECEIVE_POKEMON,
   data: json.results
 });
