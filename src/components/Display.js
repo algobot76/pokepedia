@@ -34,7 +34,7 @@ class Display extends Component<Props> {
       <div className={classes.root}>
         <Grid container spacing={24}>
           {this.props.pokemon.map(pokemon => (
-            <Grid item xs>
+            <Grid item xs={3}>
               <PokemonCard
                 id={pokemon.id}
                 name={pokemon.name}
