@@ -63,8 +63,8 @@ const searchPokemonHelper = (name, pokemon) => ({
 
 export const searchPokemon = () => (dispatch, getState) => {
   const state = getState();
-  const { searchTerm, pokemon } = state;
+  const { query, pokemon } = state;
   return dispatch(
-    searchPokemonHelper(searchTerm.pokemonToSearch, pokemon.pokemon)
+    searchPokemonHelper(query.pokemonToSearch, pokemon.pokemon)
   );
 };

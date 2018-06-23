@@ -71,11 +71,26 @@ const searchTerm = (
 
 const query = (
   state = {
+    pokemonToSearch: '',
     displayedPokemon: []
   },
   action
 ) => {
   switch (action.type) {
+    case UPDATE_SEARCH_TERM:
+      const pokemonToSearch = action.term;
+      if (!pokemonToSearch) {
+        return {
+          ...state,
+          pokemonToSearch
+        };
+      } else {
+        return {
+          ...state,
+          pokemonToSearch,
+          displayedPokemon: []
+        };
+      }
     case SEARCH_POKEMON:
       return {
         ...state,
@@ -89,7 +104,6 @@ const query = (
 const rootReducer = combineReducers({
   count,
   pokemon,
-  searchTerm,
   query
 });
 

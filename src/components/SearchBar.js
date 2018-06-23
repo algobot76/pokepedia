@@ -68,9 +68,9 @@ const SearchBar = ({ classes, placeholder, term, onChange, onClick }) => {
 };
 
 const mapStateToProps = state => {
-  const { searchTerm, pokemon } = state;
+  const { query, pokemon } = state;
   return {
-    term: searchTerm.pokemonToSearch,
+    term: query.pokemonToSearch,
     pokemon: pokemon.pokemon
   };
 };
