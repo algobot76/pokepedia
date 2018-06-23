@@ -9,6 +9,7 @@ import PokemonCard from './PokemonCard';
 
 type Props = {
   pokemon: [Object],
+  displayedPokemon: [Object],
   classes: Object
 };
 
@@ -30,17 +31,31 @@ class Display extends Component<Props> {
   };
 
   render() {
-    const { classes, pokemon } = this.props;
+    const { classes, pokemon, displayedPokemon } = this.props;
+
+    let contents = [];
+    if (displayedPokemon.length === 0) {
+      contents = pokemon.map(p => (
+        <Grid item xs={3} key={p.id}>
+          <LazyLoad height={100} offset={100} once>
+            <PokemonCard id={p.id} name={p.name} src={p.src} />
+          </LazyLoad>
+        </Grid>
+      ));
+    } else {
+      contents = displayedPokemon.map(p => (
+        <Grid item xs={3} key={p.id}>
+          <LazyLoad height={100} offset={100} once>
+            <PokemonCard id={p.id} name={p.name} src={p.src} />
+          </LazyLoad>
+        </Grid>
+      ));
+    }
+
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          {pokemon.map(p => (
-            <Grid item xs={3} key={p.id}>
-              <LazyLoad height={100} offset={100} once>
-                <PokemonCard id={p.id} name={p.name} src={p.src} />
-              </LazyLoad>
-            </Grid>
-          ))}
+          {contents}
         </Grid>
       </div>
     );
@@ -48,8 +63,11 @@ class Display extends Component<Props> {
 }
 
 const mapStateToProps = state => {
-  const { pokemon } = state;
-  return pokemon;
+  const { pokemon, query } = state;
+  return {
+    pokemon: pokemon.pokemon,
+    displayedPokemon: query.displayedPokemon
+  };
 };
 
 export default compose(withStyles(styles), connect(mapStateToProps))(Display);
