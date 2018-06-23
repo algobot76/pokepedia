@@ -52,23 +52,6 @@ const pokemon = (
   }
 };
 
-const searchTerm = (
-  state = {
-    pokemonToSearch: ''
-  },
-  action
-) => {
-  switch (action.type) {
-    case UPDATE_SEARCH_TERM:
-      return {
-        ...state,
-        pokemonToSearch: action.term
-      };
-    default:
-      return state;
-  }
-};
-
 const query = (
   state = {
     pokemonToSearch: '',
