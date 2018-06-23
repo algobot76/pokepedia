@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FixedBar from '../components/FixedBar';
 import Display from '../components/Display';
-import { fetchCount } from '../actions';
+import { fetchCount, fetchPokemon } from '../actions';
 
 class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(fetchCount());
+  }
+
+  componentDidUpdate() {
+    const { dispatch } = this.props;
+    dispatch(fetchPokemon(this.props.count));
   }
 
   render() {
