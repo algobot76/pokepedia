@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_COUNT, REQUEST_COUNT } from '../constants';
+import {
+  RECEIVE_COUNT,
+  RECEIVE_POKEMON,
+  REQUEST_COUNT,
+  REQUEST_POKEMON
+} from '../constants';
 
 const count = (
   state = {
@@ -25,8 +30,29 @@ const count = (
   }
 };
 
+const pokemon = (
+  state = {
+    isFetchingPokemon: false,
+    pokemon: []
+  },
+  action
+) => {
+  switch (action.type) {
+    case REQUEST_POKEMON:
+      return {
+        ...state,
+        isFetchingPokemon: true
+      };
+    case RECEIVE_POKEMON:
+      return { ...state, isFetchingPokemon: false, pokemon: action.pokemon };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
-  count
+  count,
+  pokemon
 });
 
 export default rootReducer;

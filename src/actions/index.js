@@ -26,7 +26,7 @@ export const requestPokemon = () => ({
 
 export const receivePokemon = res => ({
   type: RECEIVE_POKEMON,
-  data: res.data.results.map(pokemon => ({
+  pokemon: res.data.results.map(pokemon => ({
     id: getId(pokemon.url),
     name: capitalizeFirstLetter(pokemon.name)
   }))
