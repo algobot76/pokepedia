@@ -8,3 +8,12 @@ export const getId = (url: string): string => {
 export const capitalizeFirstLetter = (name: string): string => {
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
+
+export const getPokemonImageUrl = (id: string): string => {
+  let newId: string = id;
+  while (id.length < 3) {
+    newId = `0${newId}`;
+  }
+
+  return `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${newId}.png`;
+};
