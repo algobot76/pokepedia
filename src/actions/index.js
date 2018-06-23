@@ -29,9 +29,21 @@ export const receivePokemon = json => ({
   data: json.results
 });
 
-export const fetchCount = () => dispatch => {
+const fetchCount = () => dispatch => {
   dispatch(requestCount());
   return pokeapi
     .get('pokemon')
     .then(dispatch(response => receiveCount(response.data.count)));
+};
+
+const shouldFetchCount = state => {
+  const count = state.count;
+
+  return count === 0;
+};
+
+export const fetchCountIfNeeded = () => (dispatch, getState) => {
+  if (shouldFetchCount(getState())) {
+    return dispatch(fetchCount());
+  }
 };
