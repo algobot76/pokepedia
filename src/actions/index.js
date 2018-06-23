@@ -49,9 +49,9 @@ export const fetchPokemon = count => dispatch => {
     .then(response => dispatch(receivePokemon(response)));
 };
 
-export const updateSearchTerm = term => ({
+export const updateSearchTerm = event => ({
   type: UPDATE_SEARCH_TERM,
-  term
+  term: event.target.value
 });
 
 export const searchPokemon = (name, pokemon) => ({

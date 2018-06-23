@@ -48,7 +48,7 @@ const SearchBar = ({ classes, placeholder, searchTerm, onChange }) => {
           className={classes.input}
           placeholder={placeholder}
           value={searchTerm}
-          onChange={onChange('foo')}
+          onChange={onChange}
           fullWidth
           disableUnderline
         />
@@ -69,7 +69,10 @@ const SearchBar = ({ classes, placeholder, searchTerm, onChange }) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClick: () =>
     dispatch(searchPokemon(ownProps.pokemonToSearch, ownProps.pokemon)),
-  onChange: term => dispatch(updateSearchTerm(term))
+  onChange: event => {
+    console.log(event);
+    dispatch(updateSearchTerm(event));
+  }
 });
 
 export default compose(withStyles(styles), connect(null, mapDispatchToProps))(
