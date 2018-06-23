@@ -3,7 +3,9 @@ import {
   RECEIVE_COUNT,
   RECEIVE_POKEMON,
   REQUEST_COUNT,
-  REQUEST_POKEMON
+  REQUEST_POKEMON,
+  SEARCH_POKEMON,
+  UPDATE_SEARCH_TERM
 } from '../constants';
 
 const count = (
@@ -50,9 +52,45 @@ const pokemon = (
   }
 };
 
+const searchTerm = (
+  state = {
+    pokemonToSearch: ''
+  },
+  action
+) => {
+  switch (action.type) {
+    case UPDATE_SEARCH_TERM:
+      return {
+        ...state,
+        pokemonToSearch: action.term
+      };
+    default:
+      return state;
+  }
+};
+
+const query = (
+  state = {
+    displayedPokemon: []
+  },
+  action
+) => {
+  switch (action.type) {
+    case SEARCH_POKEMON:
+      return {
+        ...state,
+        displayedPokemon: action.possiblePokemon
+      };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   count,
-  pokemon
+  pokemon,
+  searchTerm,
+  query
 });
 
 export default rootReducer;

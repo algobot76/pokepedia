@@ -1,18 +1,11 @@
-// @flow
 import React from 'react';
+import { connect } from 'react-redux';
 import { IconButton, Input, Paper } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import withStyles from '@material-ui/core/styles/withStyles';
+import compose from 'recompose/compose';
 import classNames from 'classnames';
-
-type Props = {
-  placeholder?: string,
-  classes: Object
-};
-
-type State = {
-  value: string
-};
+import { searchPokemon, updateSearchTerm } from '../actions';
 
 const styles = {
   root: {
@@ -47,46 +40,38 @@ const styles = {
   }
 };
 
-class SearchBar extends React.Component<Props, State> {
-  static defaultProps = {
-    placeholder: ''
-  };
+const SearchBar = ({ classes, placeholder, searchTerm, onChange }) => {
+  return (
+    <Paper className={classes.root}>
+      <div className={classes.searchContainer}>
+        <Input
+          className={classes.input}
+          placeholder={placeholder}
+          value={searchTerm}
+          onChange={onChange('foo')}
+          fullWidth
+          disableUnderline
+        />
+      </div>
+      <IconButton
+        classes={{
+          root: classNames(classes.iconButton, classes.searchIconButton, {
+            [classes.iconButtonHidden]: searchTerm === ''
+          })
+        }}
+      >
+        <SearchIcon className={classes.icon} />
+      </IconButton>
+    </Paper>
+  );
+};
 
-  state = {
-    value: ''
-  };
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onClick: () =>
+    dispatch(searchPokemon(ownProps.pokemonToSearch, ownProps.pokemon)),
+  onChange: term => dispatch(updateSearchTerm(term))
+});
 
-  handleInputChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    this.setState({ value: e.currentTarget.value });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Paper className={classes.root}>
-        <div className={classes.searchContainer}>
-          <Input
-            className={classes.input}
-            placeholder={this.props.placeholder}
-            value={this.state.value}
-            onChange={this.handleInputChange}
-            fullWidth
-            disableUnderline
-          />
-        </div>
-        <IconButton
-          classes={{
-            root: classNames(classes.iconButton, classes.searchIconButton, {
-              [classes.iconButtonHidden]: this.state.value === ''
-            })
-          }}
-        >
-          <SearchIcon className={classes.icon}/>
-        </IconButton>
-      </Paper>
-    );
-  }
-}
-
-export default withStyles(styles)(SearchBar);
+export default compose(withStyles(styles), connect(null, mapDispatchToProps))(
+  SearchBar
+);

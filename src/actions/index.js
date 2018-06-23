@@ -2,7 +2,9 @@ import {
   RECEIVE_COUNT,
   RECEIVE_POKEMON,
   REQUEST_COUNT,
-  REQUEST_POKEMON
+  REQUEST_POKEMON,
+  SEARCH_POKEMON,
+  UPDATE_SEARCH_TERM
 } from '../constants';
 import { capitalizeFirstLetter, getId, getPokemonImageUrl } from '../utils';
 import axios from 'axios';
@@ -46,3 +48,13 @@ export const fetchPokemon = count => dispatch => {
     .get(`pokemon/?limit=${count}`)
     .then(response => dispatch(receivePokemon(response)));
 };
+
+export const updateSearchTerm = term => ({
+  type: UPDATE_SEARCH_TERM,
+  term
+});
+
+export const searchPokemon = (name, pokemon) => ({
+  type: SEARCH_POKEMON,
+  possiblePokemon: pokemon.filter(p => p.name.includes(name))
+});
